@@ -1,11 +1,21 @@
+import { Link } from "react-router-dom";
+
 export default function NavigationMenu() {
   return (
-    <nav>
+    <nav className="nav-menu">
       <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Menu</li>
-        <li>Reservations</li>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+          <Link to="/menu">Menu</Link>
+        </li>
+        <li>
+          <Link to="/booking">Reservations</Link>
+        </li>
       </ul>
     </nav>
   );

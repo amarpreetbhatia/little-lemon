@@ -1,3 +1,176 @@
+/* CallToAction (Hero/Jumbotron) */
+.cta {
+  background: linear-gradient(90deg, #f4ce14 0%, #fffbe6 100%);
+  padding: 3rem 2rem 2rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(244, 206, 20, 0.1);
+  text-align: left;
+  margin-bottom: 2rem;
+}
+.cta h1 {
+  font-size: 2.5rem;
+  color: #495e57;
+  margin-bottom: 1rem;
+  font-weight: 800;
+}
+.cta p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+.cta button {
+  background: #495e57;
+  color: #f4ce14;
+  border: none;
+  padding: 0.9rem 2.2rem;
+  font-size: 1.15rem;
+  border-radius: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 12px rgba(73, 94, 87, 0.1);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.cta button:hover {
+  background: #f4ce14;
+  color: #495e57;
+}
+
+/* Specials Section */
+.specials {
+  margin-bottom: 2rem;
+}
+.specials-list {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.special-card {
+  background: #fffbe6;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(244, 206, 20, 0.1);
+  padding: 1.5rem 1.2rem;
+  min-width: 220px;
+  flex: 1 1 220px;
+  max-width: 300px;
+}
+.special-card h3 {
+  color: #495e57;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+.special-card p {
+  color: #333;
+  font-size: 1rem;
+}
+
+/* CustomersSay (Testimonials) */
+.testimonials {
+  margin-bottom: 2rem;
+}
+.testimonials-list {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.testimonial-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(73, 94, 87, 0.1);
+  padding: 1.2rem 1rem;
+  min-width: 200px;
+  flex: 1 1 200px;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.testimonial-card .stars {
+  color: #f4ce14;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.testimonial-card p {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.customer-name {
+  color: #495e57;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Chicago Section */
+.chicago {
+  background: #e9f7ef;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(73, 94, 87, 0.08);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.chicago h2 {
+  color: #495e57;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.chicago p {
+  color: #333;
+  font-size: 1.1rem;
+}
+
+/* BookingPage Section */
+.booking {
+  background: #fffbe6;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(244, 206, 20, 0.1);
+  padding: 2.5rem 2rem;
+  max-width: 500px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.booking h2 {
+  color: #495e57;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.booking p {
+  color: #333;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+.booking form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+.booking input {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e9b806;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.booking button {
+  background: #495e57;
+  color: #f4ce14;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 24px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 12px rgba(73, 94, 87, 0.1);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.booking button:hover {
+  background: #f4ce14;
+  color: #495e57;
+}
 body {
   font-family: "Montserrat", "Roboto", Arial, sans-serif;
   background: #fafafa;
