@@ -1,4 +1,4 @@
-export default function Header() {
+export default function Header({ onReserve }) {
   return (
     <header className="App-header">
       <h1>Little Lemon</h1>
@@ -7,7 +7,7 @@ export default function Header() {
         We are a family owned Mediterranean restaurant, focused on traditional
         recipes served with a modern twist.
       </p>
-      <button>Reserve a Table</button>
+      <button onClick={onReserve}>Reserve a Table</button>
       <img
         src="/resturantfood.jpg"
         width={400}
