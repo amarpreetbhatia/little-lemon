@@ -1,6 +1,6 @@
 import BookingForm from "./BookingForm";
 
-export default function BookingPage({ availableTimes, dispatch }) {
+export default function BookingPage({ availableTimes, dispatch, submitForm }) {
   return (
     <section className="booking">
       <div className="booking-grid">
@@ -17,7 +17,11 @@ export default function BookingPage({ availableTimes, dispatch }) {
         </div>
 
         <div className="booking-panel">
-          <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+          <BookingForm
+            availableTimes={availableTimes}
+            dispatch={dispatch}
+            submitForm={submitForm}
+          />
         </div>
       </div>
     </section>

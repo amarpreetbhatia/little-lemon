@@ -3,6 +3,7 @@ import { useState } from "react";
 export default function BookingForm({
   availableTimes = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"],
   dispatch,
+  submitForm,
 }) {
   const today = new Date();
   const yyyy = today.getFullYear();
@@ -16,7 +17,7 @@ export default function BookingForm({
   const [occasion, setOccasion] = useState("Birthday");
   const [submitted, setSubmitted] = useState(null);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const reservation = {
       id: Date.now(),
@@ -27,14 +28,37 @@ export default function BookingForm({
     };
 
     try {
-      const existing = JSON.parse(localStorage.getItem("reservations") || "[]");
-      existing.push(reservation);
-      localStorage.setItem("reservations", JSON.stringify(existing));
+      if (typeof submitForm === "function") {
+        const result = submitForm(reservation);
+        const ok =
+          result && typeof result.then === "function" ? await result : result;
+        if (ok) {
+          // Optionally persist locally
+          try {
+            const existing = JSON.parse(
+              localStorage.getItem("reservations") || "[]"
+            );
+            existing.push(reservation);
+            localStorage.setItem("reservations", JSON.stringify(existing));
+          } catch (err) {
+            console.error("Could not save reservation locally", err);
+          }
+          setSubmitted(reservation);
+        } else {
+          console.error("Submission failed");
+        }
+      } else {
+        // no submit handler provided, fall back to local save
+        const existing = JSON.parse(
+          localStorage.getItem("reservations") || "[]"
+        );
+        existing.push(reservation);
+        localStorage.setItem("reservations", JSON.stringify(existing));
+        setSubmitted(reservation);
+      }
     } catch (err) {
-      console.error("Could not save reservation", err);
+      console.error("Error submitting reservation", err);
     }
-
-    setSubmitted(reservation);
 
     // reset to sensible defaults
     setDate(minDate);
