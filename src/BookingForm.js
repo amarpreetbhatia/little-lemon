@@ -1,6 +1,9 @@
 import { useState } from "react";
 
-export default function BookingForm() {
+export default function BookingForm({
+  availableTimes = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"],
+  dispatch,
+}) {
   const today = new Date();
   const yyyy = today.getFullYear();
   const mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -8,16 +11,6 @@ export default function BookingForm() {
   const minDate = `${yyyy}-${mm}-${dd}`;
 
   const [date, setDate] = useState(minDate);
-  // available times (stateful so it can be updated later)
-  const [availableTimes] = useState([
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00",
-  ]);
-
   const [time, setTime] = useState(availableTimes[2] || "19:00");
   const [guests, setGuests] = useState(2);
   const [occasion, setOccasion] = useState("Birthday");
@@ -62,7 +55,13 @@ export default function BookingForm() {
           id="res-date"
           type="date"
           value={date}
-          onChange={(e) => setDate(e.target.value)}
+          onChange={(e) => {
+            const newDate = e.target.value;
+            setDate(newDate);
+            if (typeof dispatch === "function") {
+              dispatch({ type: "date", date: newDate });
+            }
+          }}
           min={minDate}
           required
         />
