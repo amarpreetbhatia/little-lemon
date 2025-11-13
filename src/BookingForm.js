@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function BookingForm({
   availableTimes = ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"],
@@ -16,6 +16,21 @@ export default function BookingForm({
   const [guests, setGuests] = useState(2);
   const [occasion, setOccasion] = useState("Birthday");
   const [submitted, setSubmitted] = useState(null);
+  const [isFormValid, setIsFormValid] = useState(false);
+  const formRef = useRef(null);
+
+  // Update form validity whenever input values change
+  useEffect(() => {
+    if (!formRef.current) {
+      setIsFormValid(false);
+      return;
+    }
+    // Ensure guests is within allowed range
+    const guestsValid =
+      typeof guests === "number" && guests >= 1 && guests <= 10;
+    const valid = formRef.current.checkValidity() && guestsValid;
+    setIsFormValid(Boolean(valid));
+  }, [date, time, guests, occasion, availableTimes]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -28,6 +43,11 @@ export default function BookingForm({
     };
 
     try {
+      // final client-side validation: prevent submission if form invalid
+      if (formRef.current && !formRef.current.checkValidity()) {
+        formRef.current.reportValidity();
+        return;
+      }
       if (typeof submitForm === "function") {
         const result = submitForm(reservation);
         const ok =
@@ -69,9 +89,11 @@ export default function BookingForm({
 
   return (
     <form
+      ref={formRef}
       className="booking-form"
       onSubmit={handleSubmit}
       aria-label="Reservation form"
+      noValidate
     >
       <label className="form-field" htmlFor="res-date">
         <span className="field-label">Date</span>
@@ -113,11 +135,12 @@ export default function BookingForm({
           id="guests"
           type="number"
           value={guests}
-          onChange={(e) => setGuests(e.target.value)}
+          onChange={(e) => setGuests(Number(e.target.value))}
           min="1"
           max="10"
           placeholder="1"
           required
+          aria-invalid={guests < 1 || guests > 10}
         />
       </label>
 
@@ -134,7 +157,7 @@ export default function BookingForm({
       </label>
 
       <div className="form-actions">
-        <button type="submit" className="cta-btn">
+        <button type="submit" className="cta-btn" disabled={!isFormValid}>
           Make Your reservation
         </button>
       </div>

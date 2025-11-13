@@ -6,7 +6,7 @@ export default function CallToAction() {
         Experience Mediterranean flavors in the heart of Chicago. Reserve your
         table now!
       </p>
-      <button>Reserve a Table</button>
+      <button aria-label="On Click">Reserve a Table</button>
     </section>
   );
 }
